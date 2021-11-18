@@ -1,0 +1,10 @@
+.npm-cache
+.vscode
+coverage
+node_modules
+e2e
+tests
+dist
+documentation
+Dockerfile
+docker-compose.yml
