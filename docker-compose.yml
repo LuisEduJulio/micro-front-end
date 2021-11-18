@@ -1,0 +1,48 @@
+version: "3.7"
+
+networks:
+  micro-front-end:
+    external: false
+    name: micro-front-end
+
+services: 
+
+  container:
+    container_name: container
+    build:
+      context: .
+      dockerfile: ./container/Dockerfile
+      target: development
+    restart: unless-stopped
+    command: npm start
+    env_file:
+      - ./container/.env
+    volumes:
+      - ./container/:/app/container/
+      - /app/container/node_modules
+    depends_on:
+      - mf-table
+    networks:
+      - MF
+    tty: true
+    ports:
+      - 3000:3000
+
+  mf-table:
+    container_name: mf-table
+    build:
+      context: .
+      dockerfile: ./mf-table/Dockerfile
+      target: development
+    restart: unless-stopped
+    command: npm start
+    env_file:
+      - ./mf-table/.env
+    volumes:
+      - ./mf-table/:/app/mf-table/
+      - /app/mf-table/node_modules
+    networks:
+      - MF
+    tty: true
+    ports:
+      - 3010:3010
