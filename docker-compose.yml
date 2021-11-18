@@ -26,7 +26,7 @@ services:
       - micro-front-end
     tty: true
     ports:
-      - 3000:3000
+      - '3000:3000'
 
   mf-table:
     container_name: mf-table
@@ -45,4 +45,4 @@ services:
       - micro-front-end
     tty: true
     ports:
-      - 3010:3010
+      - '3010:3010'
